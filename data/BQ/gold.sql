@@ -1,15 +1,15 @@
 --1. Total Charge Amount per provider by department
-CREATE TABLE IF NOT EXISTS `avd-databricks-demo.gold_dataset.provider_charge_summary` (
+CREATE TABLE IF NOT EXISTS `project-02a15a04-76cb-4a67-93e.provider_charge_summary` (
     Provider_Name STRING,
     Dept_Name STRING,
     Amount FLOAT64
 );
 
 # truncate table
-TRUNCATE TABLE `avd-databricks-demo.gold_dataset.provider_charge_summary`;
+TRUNCATE TABLE `project-02a15a04-76cb-4a67-93e.provider_charge_summary`;
 
 # insert data
-INSERT INTO `avd-databricks-demo.gold_dataset.provider_charge_summary`
+INSERT INTO `project-02a15a04-76cb-4a67-93e.provider_charge_summary`
 SELECT 
     CONCAT(p.firstname, ' ', p.LastName) AS Provider_Name,
     d.Name AS Dept_Name,
@@ -27,7 +27,7 @@ GROUP BY Provider_Name, Dept_Name;
 --2. Patient History (Gold) : This table provides a complete history of a patient’s visits, diagnoses, and financial interactions.
 
 # CREATE TABLE
-CREATE TABLE IF NOT EXISTS `avd-databricks-demo.gold_dataset.patient_history` (
+CREATE TABLE IF NOT EXISTS `project-02a15a04-76cb-4a67-93e.patient_history` (
     Patient_Key STRING,
     FirstName STRING,
     LastName STRING,
@@ -49,10 +49,10 @@ CREATE TABLE IF NOT EXISTS `avd-databricks-demo.gold_dataset.patient_history` (
 
 
 # TRUNCATE TABLE
-TRUNCATE TABLE `avd-databricks-demo.gold_dataset.patient_history`;
+TRUNCATE TABLE `project-02a15a04-76cb-4a67-93e.patient_history`;
 
 # INSERT DATA
-INSERT INTO `avd-databricks-demo.gold_dataset.patient_history`
+INSERT INTO `project-02a15a04-76cb-4a67-93e.patient_history`
 SELECT 
     p.Patient_Key,
     p.FirstName,
@@ -85,7 +85,7 @@ WHERE p.is_current = TRUE;
 -- 3. Provider Performance Summary (Gold) : This table summarizes provider activity, including the number of encounters, total billed amount, and claim success rate.
 
 # CREATE TABLE
-CREATE TABLE IF NOT EXISTS `avd-databricks-demo.gold_dataset.provider_performance` (
+CREATE TABLE IF NOT EXISTS `project-02a15a04-76cb-4a67-93e.provider_performance` (
     ProviderID STRING,
     FirstName STRING,
     LastName STRING,
@@ -100,10 +100,10 @@ CREATE TABLE IF NOT EXISTS `avd-databricks-demo.gold_dataset.provider_performanc
 );
 
 # TRUNCATE TABLE
-TRUNCATE TABLE `avd-databricks-demo.gold_dataset.provider_performance`;
+TRUNCATE TABLE `project-02a15a04-76cb-4a67-93e.provider_performance`;
 
 # INSERT DATA
-INSERT INTO `avd-databricks-demo.gold_dataset.provider_performance`
+INSERT INTO `project-02a15a04-76cb-4a67-93e.provider_performance`
 SELECT 
     pr.ProviderID,
     pr.FirstName,
@@ -129,7 +129,7 @@ GROUP BY pr.ProviderID, pr.FirstName, pr.LastName, pr.Specialization;
 -- 4. Department Performance Analytics (Gold): Provides insights into department-level efficiency, revenue, and patient volume.
 
 # CREATE TABLE
-CREATE TABLE IF NOT EXISTS `avd-databricks-demo.gold_dataset.department_performance` (
+CREATE TABLE IF NOT EXISTS `project-02a15a04-76cb-4a67-93e.department_performance` (
     Dept_Id STRING,
     DepartmentName STRING,
     TotalEncounters INT64,
@@ -140,10 +140,10 @@ CREATE TABLE IF NOT EXISTS `avd-databricks-demo.gold_dataset.department_performa
 );
 
 # TRUNCATE TABLE
-TRUNCATE TABLE `avd-databricks-demo.gold_dataset.department_performance`;
+TRUNCATE TABLE `project-02a15a04-76cb-4a67-93e.department_performance`;
 
 # INSERT DATA
-INSERT INTO `avd-databricks-demo.gold_dataset.department_performance`
+INSERT INTO `project-02a15a04-76cb-4a67-93e.department_performance`
 SELECT 
     d.Dept_Id,
     d.Name AS DepartmentName,
